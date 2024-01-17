@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
   # initialize the loader
   loader = TextLoader(
-    "/Users/punkbooster/Projects/langchain/medium-vector-database.txt"
+    "/Users/punkbooster/Projects/langchain/midium-blogs/medium-vector-database.txt"
   )
 
   # load full document
