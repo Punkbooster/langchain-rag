@@ -5,7 +5,6 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
 from langchain.chains import RetrievalQA
-from langchain.chat_models import ChatOpenAI
 import pinecone
 
 from langchain.llms import Ollama
@@ -43,8 +42,7 @@ if __name__ == "__main__":
     texts, embeddings, index_name="langchain-doc-index"
   )
 
-  # set which llm model we want to use with temperature.
-  # temperature decides how creative the llm will be.
+  # connect to local ollama
   llm = Ollama(base_url="http://localhost:11434", model="llama2")
 
   # create a chain with OpenAI LLm
