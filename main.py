@@ -8,6 +8,8 @@ from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 import pinecone
 
+from langchain.llms import Ollama
+
 pinecone.init(api_key=os.environ.get("PINECONE_API_KEY"), environment="gcp-starter")
 
 if __name__ == "__main__":
@@ -38,12 +40,12 @@ if __name__ == "__main__":
   # take the text chunks, use openai embeddings api to convert text chunks to vectors, take these vectors and store them in pinecone database
   # index name is database name index created from pinecone.io
   doc_search = Pinecone.from_documents(
-    texts, embeddings, index_name="medium-blogs-embeddings-index"
+    texts, embeddings, index_name="langchain-doc-index"
   )
 
   # set which llm model we want to use with temperature.
   # temperature decides how creative the llm will be.
-  llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
+  llm = Ollama(base_url="http://localhost:11434", model="llama2")
 
   # create a chain with OpenAI LLm
   # chain type stuff means that the context for LLm we are going to provide by ourselves from vector store
